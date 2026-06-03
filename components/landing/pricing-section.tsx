@@ -30,15 +30,31 @@ export function PricingSection() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (data.success) {
+        setFormSubmitted(true);
+        setFormData({ name: "", email: "", company: "", message: "" });
+      } else {
+        alert("There was an issue submitting your request. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      alert("There was a connection issue. Please try again.");
+    } finally {
       setLoading(false);
-      setFormSubmitted(true);
-      setFormData({ name: "", email: "", company: "", message: "" });
-    }, 1500);
+    }
   };
 
   return (
