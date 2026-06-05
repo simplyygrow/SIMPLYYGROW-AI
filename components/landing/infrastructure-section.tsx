@@ -230,6 +230,26 @@ export function InfrastructureSection() {
             </div>
           ))}
         </div>
+
+        {/* Additional Trust Block */}
+        <div className={`mt-20 p-8 lg:p-12 border border-foreground/10 bg-foreground/[0.01] backdrop-blur-md rounded-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 transition-all duration-1000 delay-400 ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
+          <div className="max-w-2xl">
+            <span className="font-mono text-xs text-[#eca8d6] uppercase tracking-widest block mb-4">Our Core Philosophy</span>
+            <h3 className="text-3xl lg:text-4xl font-display mb-4">Why Businesses Choose SimplyyGrow</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              We don't sell generic software. We build AI systems that become part of your business operations. Our goal is simple: reduce manual work, increase efficiency, improve customer experience, and help businesses scale with AI. From a single AI agent to a complete multi-agent workforce, our solutions are designed to grow with your business.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2.5 shrink-0 lg:border-l border-foreground/10 lg:pl-8 mt-6 lg:mt-0 w-full lg:w-auto">
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest block mb-1">Our Focus</span>
+            <span className="text-sm font-medium text-white flex items-center gap-2">✓ Reduce manual work</span>
+            <span className="text-sm font-medium text-white flex items-center gap-2">✓ Increase efficiency</span>
+            <span className="text-sm font-medium text-white flex items-center gap-2">✓ Improve customer experience</span>
+            <span className="text-sm font-medium text-white flex items-center gap-2">✓ Help businesses scale with AI</span>
+          </div>
+        </div>
       </div>
     </section>
   );
