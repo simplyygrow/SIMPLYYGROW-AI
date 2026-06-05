@@ -3,14 +3,10 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
+    const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL || 'https://script.google.com/macros/s/AKfycbyQ1iI_cKUdvplq_2J13KUqobsl3urlemRUI2cc1cIrHTRgG_PPrjCv_pO_Si0RzIuB7w/exec';
     
     console.log("New consultation form submission received:", data);
-    
-    if (!webhookUrl) {
-      console.warn("GOOGLE_SHEET_WEBHOOK_URL is not set in environment variables. Falling back to local log mode.");
-      return NextResponse.json({ success: true, message: 'Local simulation success.' });
-    }
+    console.log("Forwarding to webhook URL:", webhookUrl);
     
     const response = await fetch(webhookUrl, {
       method: 'POST',
